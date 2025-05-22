@@ -1,6 +1,11 @@
 const router = require('express').Router();
+
+
+//---------declarar variables---------
+
 //datos generales
 const personasRouter = require('./personas');
+const usuariosRouter = require('./usuario');
 
 //roles
 const adminRouter = require('./roles/admin');
@@ -9,9 +14,7 @@ const preceptoresRouter = require('./roles/preceptores');
 const profesoresRouter = require('./roles/profesores');
 const responsablesRouter = require('./roles/responsable');
 //educacion
-const informesRouter = require('./educacion/informes');
 const materiasRouter = require('./educacion/materias');
-const librotemasRouter = require('./educacion/libroTemas');
 //horarios
 const c_m_hRouter = require('./horarios/c_m_h');
 const diasSemanaRouter = require('./horarios/diasSemana');
@@ -28,7 +31,11 @@ const localidadesRouter = require('./info/localidades');
 const nacionalidadesRouter = require('./info/nacionalidades');
 const profesionesRouter = require('./info/profesiones');
 
+//---------Routers---------
+
+//datos generales
 router.use('/personas', personasRouter);
+router.use('/usuarios', usuariosRouter);
 //asistencia
 router.use('/diasAs', diasAsRouter);
 router.use('/tipoAs', tipoAsRouter);
@@ -51,8 +58,6 @@ router.use('/anios', aniosRouter);
 router.use('/divisiones', divisionesRouter);
 router.use('/cursos', cursosRouter);
 //educacion
-router.use('/informes', informesRouter);
 router.use('/materias', materiasRouter);
-router.use('/librotemas', librotemasRouter);
 
 module.exports = router;

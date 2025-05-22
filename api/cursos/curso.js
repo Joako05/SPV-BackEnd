@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { conexion } = require('../../bd/conexion');
 
-router.get("/buscar", function (req, res, next) {
+router.get("/buscar", function (req, res) {
     const { idCurso, idAnio, idDivision } = req.query;
     
     let Filtro = "WHERE ";
@@ -25,7 +25,6 @@ router.get("/buscar", function (req, res, next) {
     }
     
     const sql = "SELECT * FROM Cursos ";
-    console.log(sql+Filtro);
     conexion.query(sql + Filtro, function (error, result) {
         if (error){
             console.log(error)
@@ -38,12 +37,13 @@ router.get("/buscar", function (req, res, next) {
     })
 });
 
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
     const sql = "SELECT * FROM Cursos";
     conexion.query(sql, function (error, result) {
-        if (error)
+        if (error){
             console.error(error);
             return res.send("Ocurrio un error");
+        }
         res.json({
             status: "ok",
             Cursos: result
